@@ -94,8 +94,8 @@ def Seller_Functions():
 ###########################################################################################################
 def Add_Market(Market_Number,Market_Name,Market_Price):
     with open("Market.txt","r+") as Add_Market_List:
-        all_info = "{Market_Number},{Market_Name},{Market_Price}\n"\
-            .format(Market_Number=Market_Number,Market_Name=Market_Name,Market_Price=Market_Price)
+        all_info = ("{Market_Number},{Market_Name},{Market_Price}\n"
+            .format(Market_Number=Market_Number,Market_Name=Market_Name,Market_Price=Market_Price))
         Add_Market_List.write(all_info)
         Add_Market_List.close()
 ###########################################################################################################
