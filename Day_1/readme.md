@@ -7,5 +7,7 @@
   4、判断输入的用户名是否存在于锁文件中\
   5、用户密码输错三次将用户名写入到锁文件中\
   
+# 使用说明
+![image](./image/005.gif)
 # 博客园地址
 http://www.cnblogs.com/jarvisall/p/7436352.html
