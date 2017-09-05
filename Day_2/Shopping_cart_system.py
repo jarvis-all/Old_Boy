@@ -54,10 +54,10 @@ while True:
                       "\033[31;1m{salary}\033[0m" .format(Market=Market_List[user_choice][0],salary=salary))
             else:
                 print("\033[41;1m你的余额只剩{salary}\033[0m".format(salary=salary))
+        else:
+            print("\033[41;1m商品不存在\033[0m")
     elif user_choice == "q":
         print("----------你成功购买以下产品----------")
         Get_Shoping_List()
         print("----------你的余额\033[31;1m{salary}\033[0m----------".format(salary=salary))
         sys.exit(0)
-    else:
-        print("商品不存在")
