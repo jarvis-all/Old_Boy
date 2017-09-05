@@ -64,19 +64,20 @@ def Get_Shoping_List():
             print(i.strip().split(',')[1:])
 
 
-Market_List = Createing_Market_Dict()
-salary = Get_Save_Salary()
-salary = int(salary)
+Market_List = Createing_Market_Dict() # 将 Market_Dict 字典的值赋给 Market_List
+salary = Get_Save_Salary() # 调用 Get_Save_Salary() 函数 并将值赋给 salary
+salary = int(salary) # 将salary的类型转换成整型并重新赋值给变量 salary
 while True:
-    for item in Market_List.items():
+    for item in Market_List.items():# 以列表返回可遍历的(键, 值) 元组数组。
         print(item)
     user_choice = input("请输入要购买的商品")
-    if user_choice.isdigit():
-        user_choice = int(user_choice)
-        if user_choice >= 0 and user_choice < len(Market_List):
-            if salary >= (Market_List[user_choice][1]):
-                salary = salary - Market_List[user_choice][1]
+    if user_choice.isdigit():# 判断用户输入的值是否为数字
+        user_choice = int(user_choice)# 将用户输入的值转换成整型
+        if user_choice >= 0 and user_choice < len(Market_List): # 判断用户输入的商品编号是否在范围内
+            if salary >= (Market_List[user_choice][1]): # 判断工资余额是否小于等于商品价格
+                salary = salary - Market_List[user_choice][1] # 工资余额减去商品价格的值重新赋值给变量 salary
                 Add_To_Shoping(salary,user_choice,Market_List[user_choice][0],Market_List[user_choice][1])
+                # 将工资余额，商品编号，商品名称，商品价格等信息写入 Shoping_informations.txt 文件中。
                 print("Added {Market} into shopping cart,your current balance is "
                       "\033[31;1m{salary}\033[0m" .format(Market=Market_List[user_choice][0],salary=salary))
             else:
