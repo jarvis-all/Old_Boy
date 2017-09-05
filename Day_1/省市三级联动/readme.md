@@ -10,4 +10,4 @@
 ![image](../image/三级菜单流程图.gif)
 
 # 使用说明
-   1、![image](../image/使用说明.gif)
+![image](../image/使用说明.gif)
