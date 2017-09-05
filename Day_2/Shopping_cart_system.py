@@ -13,7 +13,7 @@ def Createing_Market_Dict():
         for Commodity in Market_list.readlines():
             Market_Dict[int(Commodity.strip().split(',')[0])] = [Commodity.strip().split(',')[1],int(Commodity.strip().split(',')[2])]
     return Market_Dict
-
+###########################################################################################################
 def Add_To_Shoping(salary,user_choice,Market,Price):
     '''
     接收外部参数
@@ -27,7 +27,7 @@ def Add_To_Shoping(salary,user_choice,Market,Price):
         all_info = "{salary},{user_choice},{Market},{Price}\n".format(salary=salary,user_choice=user_choice,Market=Market,Price=Price)
         Shoping_list.write(all_info)
         Shoping_list.close()
-
+###########################################################################################################
 def Chack_Salary():
     '''
     检查 Shoping_informations.txt 是否有内容
@@ -39,6 +39,7 @@ def Chack_Salary():
             return True
         else:
             return False
+###########################################################################################################
 def Get_Save_Salary():
     '''
     判断 Chack_Salary () 是否为 True,如果为 True.则读取 Shoping_informations.txt 文件.
@@ -55,7 +56,7 @@ def Get_Save_Salary():
     else:
         Salary = input("Input your salary:")
     return Salary
-
+###########################################################################################################
 def Get_Shoping_List():
     '''
     读取 Shoping_informations.txt 文件，循环输出用户已购买的商品信息.
@@ -63,7 +64,7 @@ def Get_Shoping_List():
     with open('Shoping_informations.txt', 'r') as Shoping:
         for i in Shoping.readlines():
             print(i.strip().split(',')[1:])
-
+###########################################################################################################
 def Seller_Functions():
     Market_List = Createing_Market_Dict()  # 将 Market_Dict 字典的值赋给 Market_List
     salary = Get_Save_Salary()  # 调用 Get_Save_Salary() 函数 并将值赋给 salary
@@ -90,12 +91,13 @@ def Seller_Functions():
             Get_Shoping_List()
             print("----------你的余额\033[31;1m{salary}\033[0m----------".format(salary=salary))
             sys.exit(0)
+###########################################################################################################
 def Add_Market(Market_Number,Market_Name,Market_Price):
     with open("Market.txt","r+") as Add_Market_List:
         all_info = "{Market_Number},{Market_Name},{Market_Price}\n".format(Market_Number=Market_Number,Market_Name=Market_Name,Market_Price=Market_Price)
         Add_Market_List.write(all_info)
         Add_Market_List.close()
-
+###########################################################################################################
 def Change_Price():#Market_Number,Market_Price
     with open("Market.txt","r") as Change_Price_List:
         for items in Change_Price_List.readlines():
@@ -118,7 +120,7 @@ def Change_Price():#Market_Number,Market_Price
             #Market_Number = items.strip().split(',')[0]
             #Market_Name = items.strip().split(',')[1]
             #Market_Price = items.strip().split(',')[2]
-
+###########################################################################################################
 def Buyers_Functions():#Market_Number,Market_Name,Market_Price
     Category = input("1:添加商品\n2:更改商品价格\n>>")
     if Category.isdigit():
@@ -129,14 +131,17 @@ def Buyers_Functions():#Market_Number,Market_Name,Market_Price
             Change_Price()
     else:
         pass
+###########################################################################################################
 def Chack_Buyers_Or_Seller():
     Category =  input("您是买家还是卖家？>>")
     if Category == "买家":
         Seller_Functions()
     elif Category == "卖家":
         Buyers_Functions()
+###########################################################################################################
 def main():
     Chack_Buyers_Or_Seller()
+###########################################################################################################
 if __name__ == "__main__":
     main()
 
