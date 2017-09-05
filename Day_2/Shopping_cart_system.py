@@ -99,46 +99,57 @@ def Add_Market(Market_Number,Market_Name,Market_Price):
         Add_Market_List.write(all_info)
         Add_Market_List.close()
 ###########################################################################################################
+def Write_Market(items):
+    f_w = open("Market.txt","r+")
+    for item in items:
+        item = "{item}\n".format(item=item)
+        f_w.writelines(item)
+    f_w.close()
+
+
+###########################################################################################################
 def Change_Price():#Market_Number,Market_Price
+    items_list = []
     with open("Market.txt","r") as Change_Price_List:
         for items in Change_Price_List.readlines():
             print(items.strip())
-        Change_Price_List.close()
     Market_Number = input("请输入商品编号:>>")
     if Market_Number.isdigit():
-        Market_Number = int(Market_Number)
         with open("Market.txt", "r+") as Change_Price_List:
             for items in Change_Price_List.readlines():
-                if Market_Number == int(items.strip().split(',')[0]):
+                print(items.strip().split(',')[0])
+                if Market_Number == items.strip().split(',')[0]:
                     print(items.strip())
                     New_Price = input("请输入新价格:>>")
                     if New_Price.isdigit():
-                        #items = re.sub(New_Price,items.strip().split(',')[2],items)
                         items = items.replace(items.strip().split(',')[2],New_Price)
-                        Change_Price_List.writelines(items)
+                        items_list.append(items.strip())
                 else:
-                    Change_Price_List.writelines(items)
-            #Market_Number = items.strip().split(',')[0]
-            #Market_Name = items.strip().split(',')[1]
-            #Market_Price = items.strip().split(',')[2]
+                    items_list.append(items.strip())
+
+    Write_Market(items_list)
 ###########################################################################################################
 def Buyers_Functions():#Market_Number,Market_Name,Market_Price
-    Category = input("1:添加商品\n2:更改商品价格\n>>")
-    if Category.isdigit():
-        Category = int(Category)
-        if Category == 1:
-            Add_Market(Market_Number,Market_Name,Market_Price)
-        elif Category == 2:
-            Change_Price()
-    else:
-        pass
+    while True:
+        Category = input("1:添加商品\n2:更改商品价格\n>>")
+        if Category.isdigit():
+            Category = int(Category)
+            if Category == 1:
+                Add_Market(Market_Number,Market_Name,Market_Price)
+            elif Category == 2:
+                Change_Price()
+        elif Category == "B" or Category == "b":
+            break
 ###########################################################################################################
 def Chack_Buyers_Or_Seller():
-    Category =  input("您是买家还是卖家？>>")
-    if Category == "买家":
-        Seller_Functions()
-    elif Category == "卖家":
-        Buyers_Functions()
+    while True:
+        Category =  input("您是买家还是卖家？>>")
+        if Category == "买家":
+            Seller_Functions()
+        elif Category == "卖家":
+            Buyers_Functions()
+        elif Category == "Q" or Category == "q":
+            sys.exit(0)
 ###########################################################################################################
 def main():
     Chack_Buyers_Or_Seller()
