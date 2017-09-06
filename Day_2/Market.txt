@@ -1,9 +1,12 @@
-1,Mac Pro,300
+0,IPhone 8,5500
+1,IPhone 8 sp,5500
 2,Starbuck Latte,200
 3,Python Books,300
 4,Bike,500
 5,IPhone 5 s,1500
 6,IPhone 8,9000
 7,IPhone 7,3500
-8,IPhone 7 sp,5500
-0,e,10
+8,IPhone 7 sp,4000
+9,eee,10
+10,books,100
+11,milk,30
