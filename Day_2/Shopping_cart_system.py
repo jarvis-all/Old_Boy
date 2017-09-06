@@ -168,7 +168,7 @@ def Change_Price():
                 print(items.strip())
         Market_Number = input("请输入商品编号:>>")
         if Market_Number.isdigit():
-            if Market_Number in Createing_Market_Dict():
+            if int(Market_Number) in Createing_Market_Dict():
                 with open("Market.txt", "r+") as Change_Price_List:
                     for items in Change_Price_List.readlines():
                         if Market_Number == items.strip().split(',')[0]:
