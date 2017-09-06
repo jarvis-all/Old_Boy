@@ -197,6 +197,8 @@ def Change_Price():
                                 print("\033[41;1m格式错误，请重新输入\033[0m")
                         else:
                             items_list.append(items.strip())
+            else:
+                print("\033[41;1m商品编号不存在，请重新输入\033[0m")
         elif Market_Number == "B" or Market_Number == "b":
             break
         elif Market_Number == "Q" or Market_Number == "q":
