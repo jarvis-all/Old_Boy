@@ -1,0 +1,4 @@
+1、判断用户是"买家"还是"卖家"
+2、如果用户是"买家"则读取Shoping_informations.txt文件是为空（空则证明是第一次登录系统进行购物），如果为空需要提示用户输入salary。
+   不为空则读取 Shoping_informations.txt 文件最后一行的索引" 0" 位并赋值给 Salarys。
+3、读取商城文件Market.txt 循环输出商品

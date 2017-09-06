@@ -82,7 +82,7 @@ def Seller_Functions():
                     salary = salary - Market_List[user_choice][1]  # 工资余额减去商品价格的值重新赋值给变量 salary
                     Add_To_Shoping(salary, user_choice, Market_List[user_choice][0], Market_List[user_choice][1])
                     # 将工资余额，商品编号，商品名称，商品价格等信息写入 Shoping_informations.txt 文件中。
-                    print("Added {Market} into shopping cart,your current balance is "
+                    print("商品 {Market} 已添加至购物车,你的余额为： "
                           "\033[31;1m{salary}\033[0m".format(Market=Market_List[user_choice][0], salary=salary))
                 else:
                     print("\033[41;1m你的余额只剩{salary}\033[0m".format(salary=salary))
