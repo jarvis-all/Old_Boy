@@ -8,6 +8,8 @@
     4、用户输入“”or “q”退出程序并输出已购买的商品和余额
 ### 商家入口
     1、可以添加商品，更改商品价格   
+## 流程图
+![image](../Day_2/image/Shoping_cat_system.vsdx)
 ## 使用说明
 ![image](../Day_2/image/使用说明.gif)
 ## 博客园地址
