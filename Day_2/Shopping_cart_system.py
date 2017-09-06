@@ -110,6 +110,15 @@ def Seller_Functions():
             sys.exit(0)
 ###########################################################################################################
 def Add_Market():
+    '''
+    Add_Market函数用于卖家向 Market.txt 文件中添加商品.
+    判断用户输入的商品编号是否为数字同时是否存在与Market.txt 文件中，存在则提示用户商品编号存在，同时提示用户重新输入.
+    如果商品编号不存在于Market.txt 文件中，则提示用户输入商品名和商品价格.
+    将商品编号、商品名称、商品价格写入Market.txt 文件,并提示用户.
+    如果用户输入的商品编号不是数字则判断值是否为“Q” or “q”，是则退出.
+    如果不是则判断是否为“B” or “b”,是则返回上级.
+    :return:
+    '''
     while True:
         with open("Market.txt", "a+") as Add_Market_List:
             Market_Number = input("请输入商品编号：")
@@ -124,6 +133,7 @@ def Add_Market():
                     all_info = ("\n{Market_Number},{Market_Name},{Market_Price}"
                                 .format(Market_Number=Market_Number, Market_Name=Market_Name, Market_Price=Market_Price))
                     Add_Market_List.writelines(all_info)
+                    print("成功将{all_info}添加致Market".format(all_info=all_info))
                     Add_Market_List.close()
             elif Market_Number == "B" or Market_Number == "b":
                 Add_Market_List.close()
@@ -136,7 +146,11 @@ def Add_Market():
 
 ###########################################################################################################
 def Write_Market(items):
-    print(items)
+    '''
+    Write_Market 函数用于将更新后商品价格写于Market.txt文件.
+    :param items:
+    :return:
+    '''
     f_w = open("Market.txt","r+")
     for item in items:
         item = item.strip()
@@ -146,7 +160,11 @@ def Write_Market(items):
 
 
 ###########################################################################################################
-def Change_Price():#Market_Number,Market_Price
+def Change_Price():
+    '''
+    Change_Price 函数为更新商品价格主体函数
+    :return:
+    '''
     items_list = []
     with open("Market.txt","r") as Change_Price_List:
         for items in Change_Price_List.readlines():
@@ -163,10 +181,14 @@ def Change_Price():#Market_Number,Market_Price
                         items_list.append(items.strip())
                 else:
                     items_list.append(items.strip())
-
     Write_Market(items_list)
 ###########################################################################################################
-def Buyers_Functions():#Market_Number,Market_Name,Market_Price
+def Buyers_Functions():
+    '''
+    Buyers_Functions 函数为 买家 功能主函数.
+    接收用户参数用于判断是添加商品还是更改商品价格，从而调用不同的功能函数》
+    :return:
+    '''
     while True:
         Category = input("1:添加商品\n2:更改商品价格\n>>")
         if Category.isdigit():
@@ -177,8 +199,14 @@ def Buyers_Functions():#Market_Number,Market_Name,Market_Price
                 Change_Price()
         elif Category == "B" or Category == "b":
             break
+        elif Category == "Q" or Category == "q":
+            sys.exit(0)
 ###########################################################################################################
 def Chack_Buyers_Or_Seller():
+    '''
+    Chack_Buyers_Or_Seller 函数用于判断用户是"买家"还是"卖家",从而调用不同的功能函数.
+    :return:
+    '''
     while True:
         Category =  input("您是买家还是卖家？>>")
         if Category == "买家":
@@ -189,6 +217,10 @@ def Chack_Buyers_Or_Seller():
             sys.exit(0)
 ###########################################################################################################
 def main():
+    '''
+    main 函数为总函数开关
+    :return:
+    '''
     Chack_Buyers_Or_Seller()
 ###########################################################################################################
 if __name__ == "__main__":
