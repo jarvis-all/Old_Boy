@@ -141,9 +141,6 @@ def Add_Market():
             elif Market_Number == "Q" or Market_Number == "q":
                 Add_Market_List.close()
                 sys.exit(0)
-
-
-
 ###########################################################################################################
 def Write_Market(items):
     '''
@@ -157,8 +154,6 @@ def Write_Market(items):
         item = "{item}\n".format(item=item)
         f_w.write(item)
     f_w.close()
-
-
 ###########################################################################################################
 def Change_Price():
     '''
