@@ -75,7 +75,9 @@ def Seller_Functions():
         user_choice = input("请输入要购买的商品")
         if user_choice.isdigit():  # 判断用户输入的值是否为数字
             user_choice = int(user_choice)  # 将用户输入的值转换成整型
-            if user_choice >= 0 and user_choice < len(Market_List):  # 判断用户输入的商品编号是否在范围内
+            #print(type(user_choice))
+            #if user_choice >= 0 and user_choice < len(Market_List):  # 判断用户输入的商品编号是否在范围内
+            if user_choice in Market_List:
                 if salary >= (Market_List[user_choice][1]):  # 判断工资余额是否小于等于商品价格
                     salary = salary - Market_List[user_choice][1]  # 工资余额减去商品价格的值重新赋值给变量 salary
                     Add_To_Shoping(salary, user_choice, Market_List[user_choice][0], Market_List[user_choice][1])
@@ -92,18 +94,39 @@ def Seller_Functions():
             print("----------你的余额\033[31;1m{salary}\033[0m----------".format(salary=salary))
             sys.exit(0)
 ###########################################################################################################
-def Add_Market(Market_Number,Market_Name,Market_Price):
-    with open("Market.txt","r+") as Add_Market_List:
-        all_info = ("{Market_Number},{Market_Name},{Market_Price}\n"
-            .format(Market_Number=Market_Number,Market_Name=Market_Name,Market_Price=Market_Price))
-        Add_Market_List.write(all_info)
-        Add_Market_List.close()
+def Add_Market():
+    while True:
+        with open("Market.txt", "a+") as Add_Market_List:
+            Market_Number = input("请输入商品编号：")
+            if Market_Number.isdigit():
+                Market_Number = int(Market_Number)
+                Market_List = Createing_Market_Dict()  # 将 Market_Dict 字典的值赋给 Market_List
+                if Market_Number in Market_List:
+                    print("商品编号已存在")
+                else:
+                    Market_Name = input("请输入商品名称>>")
+                    Market_Price = input("请输入商品价格>>")
+                    all_info = ("\n{Market_Number},{Market_Name},{Market_Price}"
+                                .format(Market_Number=Market_Number, Market_Name=Market_Name, Market_Price=Market_Price))
+                    Add_Market_List.writelines(all_info)
+                    Add_Market_List.close()
+            elif Market_Number == "B" or Market_Number == "b":
+                Add_Market_List.close()
+                break
+            elif Market_Number == "Q" or Market_Number == "q":
+                Add_Market_List.close()
+                sys.exit(0)
+
+
+
 ###########################################################################################################
 def Write_Market(items):
+    print(items)
     f_w = open("Market.txt","r+")
     for item in items:
+        item = item.strip()
         item = "{item}\n".format(item=item)
-        f_w.writelines(item)
+        f_w.write(item)
     f_w.close()
 
 
@@ -117,7 +140,6 @@ def Change_Price():#Market_Number,Market_Price
     if Market_Number.isdigit():
         with open("Market.txt", "r+") as Change_Price_List:
             for items in Change_Price_List.readlines():
-                print(items.strip().split(',')[0])
                 if Market_Number == items.strip().split(',')[0]:
                     print(items.strip())
                     New_Price = input("请输入新价格:>>")
@@ -135,7 +157,7 @@ def Buyers_Functions():#Market_Number,Market_Name,Market_Price
         if Category.isdigit():
             Category = int(Category)
             if Category == 1:
-                Add_Market(Market_Number,Market_Name,Market_Price)
+                Add_Market()
             elif Category == 2:
                 Change_Price()
         elif Category == "B" or Category == "b":

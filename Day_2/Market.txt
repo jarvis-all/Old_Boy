@@ -1,6 +1,11 @@
-0,IPhone,100000
-1,Mac Pro,300000
-2,Starbuck Latte,3000000
-3,Python Books,5000000
-4,Bike,85555555555
-
+0,IPhone,300
+1,Mac Pro,300
+2,Starbuck Latte,200
+3,Python Books,300
+4,Bike,500
+5,aaaa,10
+9,vvv,100
+8,yyyyy,20
+12,uuuuu,15
+19,qqqqqqqqqq,20
+20,testbooks,20
