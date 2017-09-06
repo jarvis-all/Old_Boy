@@ -162,22 +162,26 @@ def Change_Price():
     :return:
     '''
     items_list = []
-    with open("Market.txt","r") as Change_Price_List:
-        for items in Change_Price_List.readlines():
-            print(items.strip())
-    Market_Number = input("请输入商品编号:>>")
-    if Market_Number.isdigit():
-        with open("Market.txt", "r+") as Change_Price_List:
+    while True:
+        with open("Market.txt","r") as Change_Price_List:
             for items in Change_Price_List.readlines():
-                if Market_Number == items.strip().split(',')[0]:
-                    print(items.strip())
-                    New_Price = input("请输入新价格:>>")
-                    if New_Price.isdigit():
-                        items = items.replace(items.strip().split(',')[2],New_Price)
-                        items_list.append(items.strip())
-                else:
-                    items_list.append(items.strip())
-    Write_Market(items_list)
+                print(items.strip())
+        Market_Number = input("请输入商品编号:>>")
+        if Market_Number.isdigit():
+            if Market_Number in Createing_Market_Dict():
+                with open("Market.txt", "r+") as Change_Price_List:
+                    for items in Change_Price_List.readlines():
+                        if Market_Number == items.strip().split(',')[0]:
+                            print(items.strip())
+                            New_Price = input("请输入新价格:>>")
+                            if New_Price.isdigit():
+                                items = items.replace(items.strip().split(',')[2],New_Price)
+                                items_list.append(items.strip())
+                        else:
+                            items_list.append(items.strip())
+            else:
+                print("\033[41;1m商品编号有误，请重新输入\033[0m")
+        Write_Market(items_list)
 ###########################################################################################################
 def Buyers_Functions():
     '''
