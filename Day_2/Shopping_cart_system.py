@@ -126,22 +126,28 @@ def Add_Market():
                 Market_Number = int(Market_Number)
                 Market_List = Createing_Market_Dict()  # 将 Market_Dict 字典的值赋给 Market_List
                 if Market_Number in Market_List:
-                    print("商品编号已存在")
+                    print("\033[41;1m商品编号已存在\033[0m")
                 else:
                     Market_Name = input("请输入商品名称>>")
                     Market_Price = input("请输入商品价格>>")
-                    all_info = ("{Market_Number},{Market_Name},{Market_Price}\n"
-                                .format(Market_Number=Market_Number, Market_Name=Market_Name, Market_Price=Market_Price))
-                    print(all_info)
-                    Add_Market_List.writelines(all_info)
-                    print("成功将{all_info}添加致Market".format(all_info=all_info))
-                    Add_Market_List.close()
+                    if not Market_Price.isdigit():
+                        print("\033[41;1m格式错误，请重新输入\033[0m")
+                        break
+                    else:
+                        all_info = ("{Market_Number},{Market_Name},{Market_Price}\n"
+                                    .format(Market_Number=Market_Number, Market_Name=Market_Name, Market_Price=Market_Price))
+                        print(all_info)
+                        Add_Market_List.writelines(all_info)
+                        print("成功将{all_info}添加致Market".format(all_info=all_info))
+                        Add_Market_List.close()
             elif Market_Number == "B" or Market_Number == "b":
                 Add_Market_List.close()
                 break
             elif Market_Number == "Q" or Market_Number == "q":
                 Add_Market_List.close()
                 sys.exit(0)
+            else:
+                print("\033[41;1m格式错误，请重新输入\033[0m")
 ###########################################################################################################
 def Write_Market(items):
     '''
@@ -177,8 +183,18 @@ def Change_Price():
                             if New_Price.isdigit():
                                 items = items.replace(items.strip().split(',')[2],New_Price)
                                 items_list.append(items.strip())
+                            elif New_Price == "B" or New_Price == "b":
+                                break
+                            elif New_Price == "Q" or New_Price == "q":
+                                sys.exit(0)
+                            else:
+                                print("\033[41;1m格式错误，请重新输入\033[0m")
                         else:
                             items_list.append(items.strip())
+            elif Market_Number == "B" or Market_Number == "b":
+                break
+            elif Market_Number == "Q" or Market_Number == "q":
+                sys.exit(0)
             else:
                 print("\033[41;1m商品编号有误，请重新输入\033[0m")
         Write_Market(items_list)
