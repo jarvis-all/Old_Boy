@@ -130,8 +130,9 @@ def Add_Market():
                 else:
                     Market_Name = input("请输入商品名称>>")
                     Market_Price = input("请输入商品价格>>")
-                    all_info = ("\n{Market_Number},{Market_Name},{Market_Price}"
+                    all_info = ("{Market_Number},{Market_Name},{Market_Price}\n"
                                 .format(Market_Number=Market_Number, Market_Name=Market_Name, Market_Price=Market_Price))
+                    print(all_info)
                     Add_Market_List.writelines(all_info)
                     print("成功将{all_info}添加致Market".format(all_info=all_info))
                     Add_Market_List.close()
