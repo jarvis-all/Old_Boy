@@ -9,7 +9,7 @@
 ### 商家入口
     1、可以添加商品，更改商品价格   
 ## 流程图
-![image](../Day_2/image/Shoping_cat_system.vsdx)
+![image](../Day_2/image/流程图.gif)
 ## 使用说明
 ![image](../Day_2/image/使用说明.gif)
 ## 博客园地址
