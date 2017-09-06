@@ -10,6 +10,6 @@
     1、可以添加商品，更改商品价格
     
 # 使用说明
-![image](../image/使用说明.gif)
+![image](../Day_2/image/使用说明.gif)
 ## 博客园地址
     pass
