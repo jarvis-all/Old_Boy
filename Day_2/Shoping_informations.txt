@@ -11,3 +11,6 @@
 2649,1,Mac Pro,300
 2349,0,IPhone,300
 2329,200,wangtongping,20
+1829,5000,wangtongping,500
+1529,0,IPhone,300
+1229,0,IPhone,300

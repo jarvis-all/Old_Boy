@@ -1,12 +1,5 @@
-0,IPhone,300
+0,IPhone,400000
 1,Mac Pro,300
 2,Starbuck Latte,200
 3,Python Books,300
 4,Bike,500
-5,aaaa,10
-9,vvv,100
-8,yyyyy,20
-12,uuuuu,15
-19,qqqqqqqqqq,20
-20,testbooks,20
-200,wangtongping,20
