@@ -66,6 +66,19 @@ def Get_Shoping_List():
             print(i.strip().split(',')[1:])
 ###########################################################################################################
 def Seller_Functions():
+    '''
+    Seller_Functions 函数为 买家 功能主函数.
+    循环输出 Market.txt 文件中的商品信息.
+    获取salary(工资/余额).
+    接收用户要购买商品的编号（商品编号为数字），判断用户输入是否为数字，是数字则将变量转换成整型.
+    判断用户输入的商品编号是否在 Market.txt 文件中，同时判断工资余额是否大于等于商品价格.
+    满足条件则将商品添加到购物车文件 Shoping_infomations.txt 文件中，并显示工资余额.
+    否则只打印工资余额.
+    如果用户输入的商品编号不在 Market.txt 文件中则提示用户商品不存在.
+    如果用户输入的商品编号不是数字则判断值是否为“Q” or “q”，是则打印用户购物中的商品，同时展示余额.
+    如果不是则判断是否为“B” or “b”,是则返回上级.
+    :return:
+    '''
     Market_List = Createing_Market_Dict()  # 将 Market_Dict 字典的值赋给 Market_List
     salary = Get_Save_Salary()  # 调用 Get_Save_Salary() 函数 并将值赋给 salary
     salary = int(salary)  # 将salary的类型转换成整型并重新赋值给变量 salary
