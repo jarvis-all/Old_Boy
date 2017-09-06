@@ -13,3 +13,5 @@
 ![image](../Day_2/image/使用说明.gif)
 ## 博客园地址
     pass
+## Github地址
+    https://github.com/jarvis-all/Old_Boy/tree/master/Day_2
