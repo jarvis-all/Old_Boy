@@ -55,6 +55,8 @@ def Get_Save_Salary():
                     Salary = Salarys.strip().split(',')[0]
     else:
         Salary = input("Input your salary:")
+        if Salary == "B" or Salary == "b":
+            sys.exit(0)
     return Salary
 ###########################################################################################################
 def Get_Shoping_List():
