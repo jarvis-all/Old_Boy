@@ -48,16 +48,21 @@ def Get_Save_Salary():
     :param salary:剩余工资
     :return salary
     '''
-    if Chack_Salary():
-        with open('Shoping_informations.txt', 'r') as Salary_lists:
-            for Salarys in Salary_lists.readlines():
-                if Salarys.strip().split(',')[0].isdigit():
-                    Salary = Salarys.strip().split(',')[0]
-    else:
-        Salary = input("Input your salary:")
-        if Salary == "B" or Salary == "b":
-            sys.exit(0)
-    return Salary
+    while True:
+        if Chack_Salary():
+            with open('Shoping_informations.txt', 'r') as Salary_lists:
+                for Salarys in Salary_lists.readlines():
+                    if Salarys.strip().split(',')[0].isdigit():
+                        Salary = Salarys.strip().split(',')[0]
+        else:
+            Salary = input("Input your salary:")
+            if Salary.isdigit():
+                Salary = Salary
+            elif Salary == "B" or Salary == "b":
+                break
+            elif Salary == "Q" or Salary == "q":
+                sys.exit(0)
+
 ###########################################################################################################
 def Get_Shoping_List():
     '''
@@ -83,33 +88,34 @@ def Seller_Functions():
     '''
     Market_List = Createing_Market_Dict()  # 将 Market_Dict 字典的值赋给 Market_List
     salary = Get_Save_Salary()  # 调用 Get_Save_Salary() 函数 并将值赋给 salary
-    salary = int(salary)  # 将salary的类型转换成整型并重新赋值给变量 salary
-    while True:
-        for item in Market_List.items():  # 以列表返回可遍历的(键, 值) 元组数组。
-            print(item)
-        user_choice = input("请输入要购买的商品")
-        if user_choice.isdigit():  # 判断用户输入的值是否为数字
-            user_choice = int(user_choice)  # 将用户输入的值转换成整型
-            #print(type(user_choice))
-            #if user_choice >= 0 and user_choice < len(Market_List):  # 判断用户输入的商品编号是否在范围内
-            if user_choice in Market_List:
-                if salary >= (Market_List[user_choice][1]):  # 判断工资余额是否小于等于商品价格
-                    salary = salary - Market_List[user_choice][1]  # 工资余额减去商品价格的值重新赋值给变量 salary
-                    Add_To_Shoping(salary, user_choice, Market_List[user_choice][0], Market_List[user_choice][1])
-                    # 将工资余额，商品编号，商品名称，商品价格等信息写入 Shoping_informations.txt 文件中。
-                    print("商品 {Market} 已添加至购物车,你的余额为： "
-                          "\033[31;1m{salary}\033[0m".format(Market=Market_List[user_choice][0], salary=salary))
+    if salary != None:
+        salary = int(salary)  # 将salary的类型转换成整型并重新赋值给变量 salary
+        while True:
+            for item in Market_List.items():  # 以列表返回可遍历的(键, 值) 元组数组。
+                print(item)
+            user_choice = input("请输入要购买的商品")
+            if user_choice.isdigit():  # 判断用户输入的值是否为数字
+                user_choice = int(user_choice)  # 将用户输入的值转换成整型
+                #print(type(user_choice))
+                #if user_choice >= 0 and user_choice < len(Market_List):  # 判断用户输入的商品编号是否在范围内
+                if user_choice in Market_List:
+                    if salary >= (Market_List[user_choice][1]):  # 判断工资余额是否小于等于商品价格
+                        salary = salary - Market_List[user_choice][1]  # 工资余额减去商品价格的值重新赋值给变量 salary
+                        Add_To_Shoping(salary, user_choice, Market_List[user_choice][0], Market_List[user_choice][1])
+                        # 将工资余额，商品编号，商品名称，商品价格等信息写入 Shoping_informations.txt 文件中。
+                        print("商品 {Market} 已添加至购物车,你的余额为： "
+                              "\033[31;1m{salary}\033[0m".format(Market=Market_List[user_choice][0], salary=salary))
+                    else:
+                        print("\033[41;1m你的余额只剩{salary}\033[0m".format(salary=salary))
                 else:
-                    print("\033[41;1m你的余额只剩{salary}\033[0m".format(salary=salary))
-            else:
-                print("\033[41;1m商品不存在\033[0m")
-        elif user_choice == "B" or user_choice == "b":
-            break
-        elif user_choice == "q" or user_choice == "Q":
-            print("----------你成功购买以下产品----------")
-            Get_Shoping_List()
-            print("----------你的余额\033[31;1m{salary}\033[0m----------".format(salary=salary))
-            sys.exit(0)
+                    print("\033[41;1m商品不存在\033[0m")
+            elif user_choice == "B" or user_choice == "b":
+                break
+            elif user_choice == "q" or user_choice == "Q":
+                print("----------你成功购买以下产品----------")
+                Get_Shoping_List()
+                print("----------你的余额\033[31;1m{salary}\033[0m----------".format(salary=salary))
+                sys.exit(0)
 ###########################################################################################################
 def Add_Market():
     '''
